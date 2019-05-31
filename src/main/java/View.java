@@ -46,13 +46,7 @@ public class View {
             fileChooser = new JFileChooser();
             int returnValue = fileChooser.showSaveDialog(mainPanel);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                String selectedFile = fileChooser.getSelectedFile().getPath();
-                try {
-                    JOptionPane.showMessageDialog(frame, "Selected", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    return fileChooser;
-                } catch (Exception ex) {
-                    displayError("Could not load file: " + selectedFile);
-                }
+                return fileChooser;
             }
 
         } catch (Exception e) {
