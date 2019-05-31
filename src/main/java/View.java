@@ -4,6 +4,7 @@ public class View {
 
     private JFrame frame;
     private JPanel mainPanel;
+    private JTable table;
 
     public View(String title) {
         frame = new JFrame(title);
