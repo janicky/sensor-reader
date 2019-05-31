@@ -1,9 +1,11 @@
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class View {
 
@@ -64,15 +66,21 @@ public class View {
         return null;
     }
 
-    public void updateTable(JSONObject[] objects) {
+    public void updateTable(JSONArray objects) {
         tableModel.getDataVector().removeAllElements();
-        for (JSONObject object : objects) {
+        Iterator<JSONObject> iterator = objects.iterator();
+        while (iterator.hasNext()) {
+            JSONObject object = iterator.next();
+            Object jsonUnit = object.get("SensorUnit");
+            String unit = (jsonUnit == null ? "" : jsonUnit.toString());
             Object[] row = {
                     object.get("SensorClass"),
                     object.get("SensorName"),
-                    object.get("SensorValue").toString() + object.get("SensorUnit").toString()
+                    object.get("SensorValue").toString() + " " + unit
             };
             tableModel.addRow(row);
         }
+        table.setModel(tableModel);
+        tableModel.fireTableDataChanged();
     }
 }

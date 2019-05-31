@@ -31,11 +31,7 @@ public class Controller {
                 JSONParser parser = new JSONParser();
                 String content = loadContent(fileChooser.getSelectedFile().getPath());
                 JSONArray sensors = (JSONArray) parser.parse(content);
-                Iterator<JSONObject> iterator = sensors.iterator();
-                while (iterator.hasNext()) {
-                    JSONObject obj = iterator.next();
-                    System.out.println(obj.get("SensorApp"));
-                }
+                view.updateTable(sensors);
 
             } catch (IOException e) {
                 view.displayError(e.getMessage());
