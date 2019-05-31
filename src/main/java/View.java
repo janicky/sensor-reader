@@ -1,10 +1,12 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class View {
 
     private JFrame frame;
     private JPanel mainPanel;
     private JTable table;
+    private JMenuItem file_item_1;
 
     public View(String title) {
         frame = new JFrame(title);
@@ -23,9 +25,13 @@ public class View {
         JMenu file = new JMenu("File");
         menuBar.add(file);
 
-        JMenuItem file_item_1 = new JMenuItem("Select source");
+        file_item_1 = new JMenuItem("Select source");
 
         file.add(file_item_1);
         frame.setJMenuBar(menuBar);
+    }
+
+    public void addSelectSourceListener(ActionListener listener) {
+        file_item_1.addActionListener(listener);
     }
 }

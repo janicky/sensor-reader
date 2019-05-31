@@ -3,5 +3,15 @@ public class Controller {
 
     public Controller(View view) {
         this.view = view;
+
+        initializeListeners();
+    }
+
+    private void initializeListeners() {
+        view.addSelectSourceListener(e -> onSelectSource());
+    }
+
+    private void onSelectSource() {
+
     }
 }
