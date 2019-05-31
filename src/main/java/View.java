@@ -1,4 +1,7 @@
+import org.json.simple.JSONObject;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
@@ -9,6 +12,7 @@ public class View {
     private JTable table;
     private JMenuItem file_item_1;
     private JFileChooser fileChooser;
+    private DefaultTableModel tableModel;
 
     public View(String title) {
         frame = new JFrame(title);
@@ -18,6 +22,11 @@ public class View {
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Type");
+        tableModel.addColumn("Name");
+        tableModel.addColumn("Value");
     }
 
     private void createMenu() {
@@ -53,5 +62,17 @@ public class View {
             displayError(e.getMessage());
         }
         return null;
+    }
+
+    public void updateTable(JSONObject[] objects) {
+        tableModel.getDataVector().removeAllElements();
+        for (JSONObject object : objects) {
+            Object[] row = {
+                    object.get("SensorClass"),
+                    object.get("SensorName"),
+                    object.get("SensorValue").toString() + object.get("SensorUnit").toString()
+            };
+            tableModel.addRow(row);
+        }
     }
 }
