@@ -4,6 +4,7 @@ import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
 public class Controller {
@@ -39,7 +40,7 @@ public class Controller {
     }
 
     private String loadContent(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
         return reader.lines().collect(Collectors.joining()).replaceAll("\\s+","");
     }
 
