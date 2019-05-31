@@ -34,4 +34,8 @@ public class View {
     public void addSelectSourceListener(ActionListener listener) {
         file_item_1.addActionListener(listener);
     }
+
+    public void displayError(String message) {
+        JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
